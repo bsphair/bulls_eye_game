@@ -13,11 +13,14 @@ class ViewController: UIViewController {
     var currentValue: Int = 0
     var targetValue: Int = 0
     var round: Int = 0
-    var score = 0
+    var playerOneScore = 0
+    var playerTwoScore = 0
+    var playerOneTurn = true
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var playerOneScoreLabel: UILabel!
+    @IBOutlet weak var playerTwoScoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     
     override func viewDidLoad() {
@@ -50,14 +53,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        let title: String
-
+        let title, message: String
+        
+        
+        //set up points
         let difference = abs(targetValue - currentValue)
-        var points = 100 - difference
+        var points = 100 - difference           //calculate actual points
         
-        score += points
-        
-        
+        //determine if bonus points can be given
         if difference == 0{
             title = "Perfect!"
             points += 100
@@ -71,9 +74,19 @@ class ViewController: UIViewController {
         else{
             title = "Not even close..."
         }
-        let message = "You scored \(points) points"
-
         
+        //assign all points to current player
+        if(playerOneTurn){
+            playerOneScore += points
+            message = "Player 1 scored \(points) points"
+        }
+        else{
+            playerTwoScore += points
+            message = "Player 2 scored \(points) points"
+        }
+        
+    
+        //set up alert message
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
         let action = UIAlertAction(title: "Ok", style: .default, handler: {
@@ -83,6 +96,8 @@ class ViewController: UIViewController {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        
+        playerOneTurn.toggle()  //switch player
     }
     
     
@@ -104,12 +119,14 @@ class ViewController: UIViewController {
     func updateLabels(){
         targetLabel.text = String(targetValue)
         roundLabel.text = String(round)
-        scoreLabel.text = String(score)
+        playerOneScoreLabel.text = String(playerOneScore)
+        playerTwoScoreLabel.text = String(playerTwoScore)
     }
 
     
     @IBAction func startNewGame() {
-        score = 0
+        playerOneScore = 0
+        playerTwoScore = 0
         round = 0
         startNewRound()
     }
