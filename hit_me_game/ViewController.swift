@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerOneScoreLabel: UILabel!
     @IBOutlet weak var playerTwoScoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var playerTurnLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,14 +110,39 @@ class ViewController: UIViewController {
     
     
     func startNewRound(){
-        round += 1
+
+        
+        
+        if(playerOneTurn){
+            round += 1
+        }
         targetValue = Int.random(in: 1...100)
         currentValue = 50
         slider.value = Float(currentValue)
         updateLabels()
+        
+        
+        
+        if(round > 10){
+            if(playerOneScore > playerTwoScore){
+                let alert = UIAlertController(title: "Player 1 Wins!!!", message: "Congrats Player 1!!!", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Play Again", style: .default, handler:{
+                    action in
+                    self.startNewGame()
+                })
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            }
+        }
     }
 
     func updateLabels(){
+        if(playerOneTurn){
+            playerTurnLabel.text = "Player 1"
+        }
+        else{
+            playerTurnLabel.text = "Player 2"
+        }
         targetLabel.text = String(targetValue)
         roundLabel.text = String(round)
         playerOneScoreLabel.text = String(playerOneScore)
