@@ -10,6 +10,9 @@ This app was built alongside a Ray Wenderlich Xcode/Swift course.
 **Language:** Swift
 
 ## Images
-<img width="570" alt="bullseye1" src="https://user-images.githubusercontent.com/15611930/50576750-86fede80-0de6-11e9-9e87-ae24d081e0b6.png">
+<img width="566" alt="bullseye1" src="https://user-images.githubusercontent.com/15611930/50600553-70f12c80-0e7f-11e9-8b16-f3ae37fd2ea4.png">
 
-<img width="570" alt="bullseye2" src="https://user-images.githubusercontent.com/15611930/50576751-89613880-0de6-11e9-82e7-be4ad3a6aba4.png">
+<img width="566" alt="bullseye2" src="https://user-images.githubusercontent.com/15611930/50600558-73538680-0e7f-11e9-88cc-66ea29d3b6c6.png">
+
+
+<img width="566" alt="bullseye3" src="https://user-images.githubusercontent.com/15611930/50600563-764e7700-0e7f-11e9-97e6-1a8af89501f9.png">
